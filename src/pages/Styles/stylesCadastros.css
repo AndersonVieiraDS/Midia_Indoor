@@ -1,0 +1,55 @@
+.cad-usuario, .cad-sala, .cad-midia, .cad-empresa {
+    background-image: url('../../imagens/fundo.tela.b.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /*height: 91vh;*/
+    min-height: 80vh;
+    margin: 0;
+  }
+  
+  .cad-usuario-container,.cad-salas-container, .cad-midia-container, .cad-empresa-container  {
+      display: flex;
+      flex-direction: column;
+      text-align: justify;
+      align-items: center;
+      font-family: 'Georama', sans-serif;
+      
+    }
+    
+    .cad-dados-usuario, .cad-dados-salas, .cad-dados-midia,  .cad-dados-empresa  {    
+      width: 60%;
+      background-color: rgba(248, 213, 168, 0.62);
+      height: 80%;
+      border-radius: 1%;
+      padding: 20px;
+      margin-left: 20px;
+      min-width: 350px;
+      margin: 3%;
+      
+    }  
+
+    .form-flex-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 5px; /* ajuste conforme necessário */
+      justify-content: space-around;
+    }
+
+
+    .data-pick {
+        display: flex;
+        justify-content: space-around;
+      }
+      @media(max-width:992px){
+        .cad-dados-usuario, .cad-dados-salas, .cad-dados-midia,  .cad-dados-empresa  {    
+          max-width: 70%;
+          align-items: center;
+
+
+        }
+        .titulo{
+          font-size: 20px;
+        }
+      }

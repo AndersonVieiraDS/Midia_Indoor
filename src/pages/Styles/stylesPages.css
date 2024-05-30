@@ -1,0 +1,59 @@
+.usuarios, .salas, .midia, .empresa, .telas {
+    background-image: url('../../imagens/fundo.tela.b.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+   /* height: 91vh;*/
+   min-height: 80vh;
+    margin: 0;
+  }
+  
+  .usuarios-container, .salas-container, .midia-container, .empresa-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-family: 'Georama', sans-serif;
+    width: 100%;
+  }
+  
+  .dados-usuario,.dados-salas, .dados-midia,.dados-empresa  {
+    width: 70%;
+    margin: 5%;
+    background-color: rgba(248, 213, 168, 0.62);
+    height: 100%;
+    border-radius: 2%;
+    padding: 10px;
+    min-width: 350px;
+  }
+  
+  .tabela-usuario, .tabela-salas, .tabela-midia,.tabela-empresa {
+    padding: 5px;
+    width: 100%;
+    
+  }
+  .geral-salas {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .input-salas {
+    width: 80%;
+  }
+  .buttonAdd{
+    text-decoration: none;
+    color: white;
+  }
+  
+  @media(max-width: 992px) {
+    .tabela-usuario, .tabela-midia,.tabela-empresa {
+        padding: 5px;
+        width: 100%;
+    }
+    .tabela-salas{
+        width: 70%;
+
+    }
+
+
+  }

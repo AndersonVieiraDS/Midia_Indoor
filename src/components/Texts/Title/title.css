@@ -1,0 +1,14 @@
+.titulo{
+    font-size: 35px;
+        /*font-family: 'Poppins', sans-serif;*/
+        /*-webkit-text-stroke: white 1px; coloca bordas nas letras*/ 
+        font-family: 'Georama', sans-serif;
+        font-weight: 600;  
+        margin-top: 5px;
+    }
+    
+  /* @media (max-width: 992px) {
+        .titulo{
+            font-size: 500px;
+        }
+    } */
