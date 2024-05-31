@@ -37,6 +37,9 @@
       justify-content: space-around;
     }
 
+    .anexos-right {
+      text-align: center;
+    }
 
     .data-pick {
         display: flex;
