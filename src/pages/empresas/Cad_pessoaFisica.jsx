@@ -9,7 +9,7 @@ import CustomInput from "../../components/input/input";
 import "../Styles/stylesCadastros.css";
 import Navbar from "../../components/navbar/Navbar";
 
-export default function Cad_empresas() {
+export default function Cad_pessoaFisica() {
   return (
     <>
       <div className="NavBar">
@@ -25,13 +25,13 @@ export default function Cad_empresas() {
                     <Subtitle text="Status" />
                     <CheckboxStatus />
                   </div>
-                  <CustomInput type="text" label="CNPJ" inputProps={{ sx: { width: '350px' } }}/>
+                  <CustomInput type="text" label="CPF" inputProps={{ sx: { width: '350px' } }}/>
                 </div>
                 <div className="form-flex-row">
-                  <CustomInput type="text" label="Razão social" inputProps={{ sx: { width: '610px' } }}/>
+                  <CustomInput type="text" label="Nome" inputProps={{ sx: { width: '610px' } }}/>
                 </div>
                 <div className="form-flex-row">
-                  <CustomInput type="text" label="Nome fantasia" inputProps={{ sx: { width: '610px' } }}/>
+                  <CustomInput type="text" label="E-mail" inputProps={{ sx: { width: '610px' } }}/>
                 </div>
                 <div className="form-flex-row">
                   <CustomInput type="text" label="Contato" inputProps={{ sx: { width: '250px' } }}/>

@@ -13,6 +13,7 @@ import Carousel from "./pages/Carousel/carousel";
 import Login from "./pages/login/Login";
 import HomeOperador from './pages/home/HomeOperador';
 import Painel from './pages/painel/Painel'
+import Cad_pessoaFisica from "./pages/empresas/Cad_pessoaFisica";
 
 function Rotas() {
   return (
