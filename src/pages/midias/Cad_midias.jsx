@@ -28,7 +28,7 @@ function Cad_midias() {
             <SubTitle text="Tipo de Mídia" />
             <CheckboxMidia />
             <ButtonUpload label="Anexar" />
-            <Label text1="*Imagem até 50MB" text2="*Vídeo até 5 minutos" />
+            <Label text1="*Formato máximo permitido imagem de até 150MB" text2="*Formato máximo permitido vídeo 4k 30fps de até 30 segundos." />
             <Subtitle text="Período de exibição" />
             <div className="data-pick">
               <ResponsiveDatePickers />
