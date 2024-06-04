@@ -13,6 +13,7 @@ import Carousel from "./pages/Carousel/carousel";
 import Login from "./pages/login/Login";
 import HomeOperador from './pages/home/HomeOperador';
 import Painel from './pages/painel/Painel'
+import Cad_pessoaFisica from "./pages/empresas/Cad_pessoaFisica";
 
 function Rotas() {
   return (
@@ -24,7 +25,8 @@ function Rotas() {
         <Route path="/salas" element={<Salas />} />
         <Route path="/empresas" element={<Empresas />} />
         <Route path="/midias" element={<Midias />} />
-        <Route path="/empresas/cadastroempresas" element={<Cad_empresas />} />
+        <Route path="/empresas/cadastrojuridica" element={<Cad_empresas />} />
+        <Route path="/empresas/cadastrofisica" element={<Cad_pessoaFisica />} />
         <Route path="/midias/cadastromidias" element={<Cad_midias />} />
         <Route path="/salas/cadastrosalas" element={<Cad_salas />} />
         <Route path="/usuarios/cadastrousuarios" element={<Cad_usuarios />} />

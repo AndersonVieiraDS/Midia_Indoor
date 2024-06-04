@@ -5,6 +5,8 @@ import Title from "../../components/Texts/Title/Title";
 import { Link, NavLink } from "react-router-dom";
 import { DeleteOutline, EditOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import "../Styles/stylesPages.css";
 import Navbar from "../../components/navbar/Navbar";
 
@@ -28,17 +30,27 @@ const handleDelete = (id) => {
 
 const customColumns = [
   {
+    field: 'status',
+    headerName: 'Status',
+    flex: 0.7,
+    renderCell: (params) => (
+      <IconButton disabled>
+        {params.row.ativo ? <CheckCircleIcon style={{ color: 'green' }} /> : <CancelIcon style={{ color: 'gray' }} />}
+      </IconButton>
+    ),
+  },
+  {
     field: "id",
-    headerName: "CNPJ",
+    headerName: "CPF / CNPJ",
     type: "number",
-    flex: 1.7,
+    flex: 2,
     valueFormatter: (params) => formatarCNPJ(params.value.toString()),
   },
-  { field: "fullName", headerName: "Razão Social", flex: 2 },
-  { field: "fantasyName", headerName: "Nome Fantasia", flex: 2 },
+  { field: "fantasyName", headerName: "Nome / Nome Fantasia", flex: 3 },
+  { field: "contato", headerName: "Contato", flex: 1.5 },
   {
     field: "celNumber",
-    headerName: "Contato",
+    headerName: "Telefone",
     type: "number",
    flex: 1.5,
     valueFormatter: (params) => formatarTelefone(params.value.toString()),
@@ -77,33 +89,37 @@ const customColumns = [
 
 const customRows = [
   {
+    ativo: true,
     id: 12345678901234,
-    fullName: "BR Voice xxxxx",
     fantasyName: "Br Voice",
+    contato: "Rafael",
     celNumber: 8112345678,
   },
   {
+    ativo: true,
     id: 87654321930899,
-    fullName: "Softex Pernambuco",
     fantasyName: "Softex",
+    contato: "Isabela",
     celNumber: 8212354378,
   },
   {
     id: 87654350621891,
-    fullName: "LanLink xxxxxxxxxxxxxxx",
     fantasyName: "LanLink",
+    contato: "Felipe",
     celNumber: 8112345578,
   },
   {
+    ativo: false,
     id: 97654302521899,
-    fullName: "di2win xxxxxxxxxxxxxx",
     fantasyName: "di2win",
+    contato: "Paulo",
     celNumber: 8112325678,
   },
   {
+    ativo: true,
     id: 89654304921899,
-    fullName: "Avantia xxxxxxx",
     fantasyName: "Avantia",
+    contato: "Priscila",
     celNumber: 8112348678,
   },
   // Adicione mais usuários conforme necessário
@@ -120,10 +136,10 @@ function Empresas() {
       <div className="empresa-container">
         <div className="dados-empresa">
         <CustomButton className="buttonAdd">
-                <NavLink to="/empresas/cadastroempresas" className='buttonAdd'>
+                <NavLink className='buttonAdd' to="/empresas/cadastrofisica" >
                   ADICIONAR
-                  </NavLink>
-                  </CustomButton>
+                </NavLink>
+        </CustomButton>
           <div className="tabela-empresa">
             <DataTable
               rows={customRows}
