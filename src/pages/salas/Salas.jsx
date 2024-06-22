@@ -9,6 +9,8 @@ import { IconButton } from "@mui/material";
 import "../Styles/stylesPages.css";
 import Navbar from "../../components/navbar/Navbar";
 import Select from "../../components/select/Select";
+import { useNavigate } from 'react-router-dom';
+import Alert from '../../components/alerts/Alert';
 
 const handleEdit = (id) => {
   console.log(`Editar item com ID: ${id}`);
@@ -18,41 +20,7 @@ const handleDelete = (id) => {
   console.log(`Deletar item com ID: ${id}`);
 };
 
-const customColumns = [
-  { field: "andar", headerName: "Andar", flex: 2 },
-  { field: "id", headerName: "Sala", flex: 1 },
-  { field: "empresa", headerName: "Empresa", flex: 2 },
-  {
-    field: "edit",
-    headerName: "",
-    flex: 0.5,
-    sortable: false,
-    renderCell: (params) => (
-      <IconButton
-        aria-label="edit"
-        size="small"
-        onClick={() => handleEdit(params.row.id)}
-      >
-        <EditOutlined />
-      </IconButton>
-    ),
-  },
-  {
-    field: "delete",
-    headerName: "",
-    flex: 0.5,
-    sortable: false,
-    renderCell: (params) => (
-      <IconButton
-        aria-label="delete"
-        size="small"
-        onClick={() => handleDelete(params.row.id)}
-      >
-        <DeleteOutline />
-      </IconButton>
-    ),
-  },
-];
+
 
 const customRows = [
   { id: 102, andar: "1º Andar", empresa: "Softex" },
@@ -82,6 +50,59 @@ const empresaOptions = [
 
 
 function Salas() {
+
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    navigate ('/salas');
+    handleClose();
+  };
+
+  const customColumns = [
+    { field: "andar", headerName: "Andar", flex: 2 },
+    { field: "id", headerName: "Sala", flex: 1 },
+    { field: "empresa", headerName: "Empresa", flex: 2 },
+    {
+      field: "edit",
+      headerName: "",
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton
+          aria-label="edit"
+          size="small"
+          onClick={() => handleEdit(params.row.id)}
+        >
+          <EditOutlined />
+        </IconButton>
+      ),
+    },
+    {
+      field: "delete",
+      headerName: "",
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton
+          aria-label="delete"
+          size="small"
+          onClick={() => handleClickOpen(params.row.id)}
+        >
+          <DeleteOutline />
+        </IconButton>
+      ),
+    },
+  ];
+
   return (
     <>
       <div className="NavBar">
@@ -101,14 +122,20 @@ function Salas() {
               <Select label="Andar" options={andarOptions} />
               <Select label="Sala" options={salaOptions} />
               <Select label="Empresa" options={empresaOptions} />
-              <ButtonSalve text="Assossiar" />
+              <ButtonSalve text="Associar" />
             </div>
+            <Alert
+                    open={open}
+                    handleClose={handleClose}
+                    title="Excluir Associação"
+                    content="Tem certeza que deseja excluir a associação?"
+                    agreeText={handleDelete}
+                    disagreeText={handleCancel}
+                  />
             <div className="tabela-salas">
               <DataTable
                 rows={customRows}
                 columns={customColumns}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
               />
             </div>
           </div>

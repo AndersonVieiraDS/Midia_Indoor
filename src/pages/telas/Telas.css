@@ -1,0 +1,10 @@
+.painelTela {
+    height: 100vh;
+    gap: 10px;
+    padding: 20px 10px 15px 10px;
+    background-image: url('../../imagens/fundo.tela.b.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+}

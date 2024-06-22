@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react'
 import CustomButton from "../../components/button/button";
 import DataTable from "../../components/tabela/tabela";
 import Title from "../../components/Texts/Title/Title";
@@ -10,6 +10,16 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import "../Styles/stylesPages.css";
 import Navbar from "../../components/navbar/Navbar";
+import { useNavigate } from 'react-router-dom';
+import Alert from '../../components/alerts/Alert';
+import AlertImage from '../../components/alerts/AlertImage';
+import imagem1 from '../../imagens/testeCarousel/Teste1.png';
+import imagem2 from '../../imagens/testeCarousel/Teste2.png';
+import imagem3 from '../../imagens/testeCarousel/Teste3.png';
+import imagem4 from '../../imagens/testeCarousel/Teste4.png';
+import imagem5 from '../../imagens/testeCarousel/Teste5.png';
+
+
 
 const handleEdit = (id) => {
   console.log(`Editar item com ID: ${id}`);
@@ -23,115 +33,155 @@ const handleDelete = (id) => {
   console.log(`Deletar item com ID: ${id}`);
 };
 
-const customColumns = [
-  {
-    field: 'status',
-    headerName: 'Status',
-    flex: 0.7,
-    renderCell: (params) => (
-      <IconButton disabled>
-        {params.row.ativo ? <CheckCircleIcon style={{ color: 'green' }} /> : <CancelIcon style={{ color: 'gray' }} />}
-      </IconButton>
-    ),
-  },
-  { field: "id", headerName: "Título", flex: 2},
-  { field: "description", headerName: "Descrição", flex: 2.5 },
-  { field: "tm", headerName: "TM", flex: 1 },
-  { field: "start", headerName: "Período Inicial", flex: 1.5 },
-  { field: "finale", headerName: "Período Final", flex: 1.5 },
-  {
-    field: "edit",
-    headerName: "",
-    flex: 0.5,
-    sortable: false,
-    renderCell: (params) => (
-      <IconButton
-        aria-label="edit"
-        size="small"
-        onClick={() => handleEdit(params.row.id)}
-      >
-        <EditOutlined />
-      </IconButton>
-    ),
-  },
-  {
-    field: "preview",
-    headerName: "",
-    flex: 0.5,
-    sortable: false,
-    renderCell: (params) => (
-      <IconButton
-        aria-label="preview"
-        size="small"
-        onClick={() => handlePreview(params.row.id)}
-      >
-        <VisibilityOutlinedIcon />
-      </IconButton>
-    ),
-  },
-  {
-    field: "delete",
-    headerName: "",
-    flex: 0.5,
-    sortable: false,
-    renderCell: (params) => (
-      <IconButton
-        aria-label="delete"
-        size="small"
-        onClick={() => handleDelete(params.row.id)}
-      >
-        <DeleteOutline />
-      </IconButton>
-    ),
-  },
-];
 
 const customRows = [
   {
     ativo: true,
     id: "Campanha Natal",
-    description: "Campanha da Softex de Natal",
+    cliente: "Softex",
     tm: "imagem",
     start: "01/10/2023",
     finale: "31/12/2023",
+    preview: imagem1,
   },
   {
     ativo: false,
     id: "Campanha Teste1",
-    description: "Campanha da Softex de Natal2",
+    cliente: "BR Voice",
     tm: "video",
     start: "01/10/2023",
     finale: "31/12/2023",
+    preview: imagem2,
   },
   {
     ativo: true,
     id: "Campanha Teste2",
-    description: "Campanha da Softex de Natal3",
+    cliente: "LanLink",
     tm: "imagem",
     start: "01/10/2023",
     finale: "31/12/2023",
+    preview: imagem3,
   },
   {
     ativo: true,
     id: "Campanha Teste3",
-    description: "Campanha da Softex de Natal4",
+    cliente: "di2Win",
     tm: "imagem",
     start: "01/10/2023",
     finale: "31/12/2023",
+    preview: imagem4,
   },
   {
     ativo: true,
     id: "Campanha Teste4",
-    description: "Campanha da Softex de Natal5",
+    cliente: "Avantia",
     tm: "video",
     start: "01/10/2023",
     finale: "31/12/2023",
+    preview: imagem5,
   },
   // Adicione mais usuários conforme necessário
   // Preencha com os dados necessários do banco de dados
 ];
 
 function Midias() {
+
+  const [open, setOpen] = useState(false);
+  const [openImage, setOpenImage] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+  const navigate = useNavigate();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClickOpenImage = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setOpenImage(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCloseImage = () => {
+    setOpenImage(false);
+    setSelectedImage('');
+  }
+
+  const handleCancel = () => {
+    navigate ('/midias');
+    handleClose();
+  };
+
+  const handleConfirmText = () => {
+    navigate('/midias');
+    handleCloseImage();
+  }
+
+  const customColumns = [
+    {
+      field: 'status',
+      headerName: 'Status',
+      flex: 0.7,
+      renderCell: (params) => (
+        <IconButton disabled>
+          {params.row.ativo ? <CheckCircleIcon style={{ color: 'green' }} /> : <CancelIcon style={{ color: 'gray' }} />}
+        </IconButton>
+      ),
+    },
+    { field: "id", headerName: "Título", flex: 2},
+    { field: "cliente", headerName: "Cliente", flex: 2.5 },
+    { field: "tm", headerName: "TM", flex: 1 },
+    { field: "start", headerName: "Período Inicial", flex: 1.5 },
+    { field: "finale", headerName: "Período Final", flex: 1.5 },
+    {
+      field: "edit",
+      headerName: "",
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton
+          aria-label="edit"
+          size="small"
+          onClick={() => handleEdit(params.row.id)}
+        >
+          <EditOutlined />
+        </IconButton>
+      ),
+    },
+    {
+      field: "preview",
+      headerName: "",
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton
+          aria-label="preview"
+          size="small"
+          onClick={() => handleClickOpenImage(params.row.preview)}
+        >
+          <VisibilityOutlinedIcon />
+        </IconButton>
+      ),
+    },
+    {
+      field: "delete",
+      headerName: "",
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton
+          aria-label="delete"
+          size="small"
+          onClick={() => handleClickOpen(params.row.id)}
+        >
+          <DeleteOutline />
+        </IconButton>
+      ),
+    },
+  ];
+
   return (
     <>
       <div className="NavBar">
@@ -146,12 +196,25 @@ function Midias() {
                   ADICIONAR
                   </NavLink>
                   </CustomButton>
+                  <Alert
+                    open={open}
+                    handleClose={handleClose}
+                    title="Excluir Mídia"
+                    content="Tem certeza que deseja excluir a mídia?"
+                    agreeText={handleDelete}
+                    disagreeText={handleCancel}
+                  />
+                  <AlertImage
+                    open={openImage}
+                    handleClose={handleCloseImage}
+                    title="Visualizar Mídia"
+                    imageUrl={selectedImage}
+                    confirmText="Voltar"
+                  />
           <div className="tabela-midia">
             <DataTable
               rows={customRows}
               columns={customColumns}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
             />
           </div>
         </div>

@@ -31,16 +31,13 @@ const Navbar = () => {
           <NavLink to="/Home">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/telas">Telas</NavLink>
-        </li>
-        <li>
           <NavLink to="/usuarios">Usuários</NavLink>
         </li>
         <li>
           <NavLink to="/salas">Salas</NavLink>
         </li>
         <li>
-          <NavLink to="/empresas">Empresas</NavLink>
+          <NavLink to="/clientes">Clientes</NavLink>
         </li>
         <li>
           <NavLink to="/midias">Mídias</NavLink>

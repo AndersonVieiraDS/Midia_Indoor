@@ -6,6 +6,8 @@ import DataTable from "../../components/tabela/tabela";
 import { DeleteOutline, EditOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import Navbar from "../../components/navbar/Navbar";
+import CustomButton from "../../components/button/button";
+import { Link, NavLink } from 'react-router-dom'
 
 const handleEdit = (id) => {
   console.log(`Editar item com ID: ${id}`);
@@ -74,10 +76,19 @@ export default function Cad_salas() {
           <div>
             <form>
               <div className="form-flex-row" >
+                <div>
                 <div className="input-salas">
                   <CustomInput type="text" label="Andar" inputProps={{ sx: { width: '250px' } }}/>
                   <CustomInput type="text" label="Salas" inputProps={{ sx: { width: '250px' } }}/>
+                <div className="form-flex-row">
+                  <CustomButton className="buttonAdd">
+                  <NavLink to="/salas" className='buttonAdd'>
+                    Voltar
+                  </NavLink>
+                  </CustomButton>
                   <ButtonSalve text="SALVAR" />
+                  </div>
+                </div>
                 </div>
                 <div className="tabela-salas">
                 <DataTable

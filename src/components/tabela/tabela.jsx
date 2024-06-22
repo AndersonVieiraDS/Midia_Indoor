@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import './tabela.css'
 
 
+
 const DataTable = ({ rows, columns, handleEdit, handleDelete }) => {
   return (
     <container className="tabela">
@@ -16,8 +17,10 @@ const DataTable = ({ rows, columns, handleEdit, handleDelete }) => {
           },
         }}
         pageSizeOptions={[5, 10]}
-        checkboxSelection
+        disableSelectionOnClick
+        checkboxSelection={false}
         getRowClassName={(params) => 'custom-row'}
+        
       />
     </div>
     </container>

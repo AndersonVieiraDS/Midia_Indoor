@@ -7,6 +7,8 @@ import Subtitle from "../../components/Texts/Subtitle/Subtitle";
 import CustomInput from "../../components/input/input";
 import "../Styles/stylesCadastros.css";
 import Navbar from "../../components/navbar/Navbar";
+import CustomButton from "../../components/button/button";
+import { Link, NavLink } from 'react-router-dom'
 
 function formatarCPF(cpf) {
   const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
@@ -45,7 +47,14 @@ function Cad_usuarios() {
                 <CustomInput type="text" label="Login" inputProps={{ sx: { width: '250px' } }}/>
                 <CustomInput type="password" label="Senha" inputProps={{ sx: { width: '250px' } }}/>
               </div>
-              <ButtonSalve text="SALVAR" />
+              <div className="form-flex-row">
+              <CustomButton className="buttonAdd">
+                <NavLink to="/usuarios" className='buttonAdd'>
+                  Voltar
+                  </NavLink>
+                  </CustomButton>
+                <ButtonSalve text="SALVAR" />
+              </div>
             </form>
         </div>
       </div>

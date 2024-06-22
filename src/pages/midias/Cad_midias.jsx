@@ -12,9 +12,11 @@ import "../Styles/stylesCadastros.css";
 import Navbar from "../../components/navbar/Navbar";
 import CheckboxStatus from "../../components/CheckBox/CheckBoxStatus"
 import Salas from "../salas/Salas";
-import Empresas from "../empresas/Empresas";
+import Empresas from "../clientes/Clientes";
 import Select from "../../components/select/Select";
 import { width } from "@mui/system";
+import CustomButton from "../../components/button/button";
+import { Link, NavLink } from 'react-router-dom'
 
 const empresaOptions = [
   { value: 0, label: 'Softex' },
@@ -34,34 +36,44 @@ function Cad_midias() {
           <div>
             <form>
               <div className="form-flex-row">
-              <CustomInput type="text" label="Titulo" inputProps={{ sx: { width: '250px' } }} />
-              <Subtitle text="Status" />
-                    <CheckboxStatus />
+                <div>
+                  <Subtitle text="Status" />
+                  <CheckboxStatus />
+                </div>
+                <div>
+                  <SubTitle type="text" text="Tipo de Mídia" />
+                  <CheckboxMidia />
+                </div>
               </div>
               <div className="form-flex-row">
-              <CustomInput type="text" label="Descrição" inputProps={{ sx: { width: '630px' ,height: '80px'} }}/>
+                <CustomInput type="text" label="Titulo" inputProps={{ sx: { width: '630px' } }} />
               </div>
-            <div className="form-flex-row">
-            <SubTitle type="text" text="Tipo de Mídia" />
+              <div className="form-flex-row">
+              <CustomInput type="text" label="Descrição" inputProps={{ sx: { width: '630px' ,height: '60px'} }}/>
               </div>
-            <div className="form-flex-row">
-            <CheckboxMidia />
-            <ButtonUpload label="Anexar" />
-            <Label text1="*Formato máximo permitido imagem de até 150MB" text2="*Formato máximo permitido vídeo 4k 30fps de até 30 segundos." />
+              <div className="form-flex-row">
+                <div className="input-salas">
+                  <Select label="Empresa" options={empresaOptions} />
+                </div>
+                <div>
+                  <ButtonUpload label="Anexar" />
+                  <Label text1="*Máx. imagem 150MB" text2="*Máx. vídeo 4k 30fps de até 30 segundos." />
+                </div>
               </div>
-              <div className="geral-salas">
-              <Select type="text" label="Empresa vinculada a midia" options={empresaOptions} inputProps={{ sx: {width: '250'}}}/>
-            </div> 
-       
-            <div className="form-flex-row">
-              <Subtitle text="Período de exibição" />
+              <div className="form-flex-row">
+                <Subtitle text="Período de exibição" />
               </div>
-            <div className="data-pick">
-              <ResponsiveDatePickers />
-            </div>
-            <div>
-            </div>
-            <ButtonSalve text="SALVAR" />
+              <div className="data-pick">
+                <ResponsiveDatePickers />
+              </div>
+              <div className="form-flex-row">
+                <CustomButton className="buttonAdd">
+                <NavLink to="/midias" className='buttonAdd'>
+                  Voltar
+                  </NavLink>
+                  </CustomButton>
+                <ButtonSalve text="SALVAR" />
+              </div>
             </form>
           </div>
         </div>

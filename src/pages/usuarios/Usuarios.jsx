@@ -9,6 +9,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import "../Styles/stylesPages.css";
 import Navbar from '../../components/navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
+import Alert from '../../components/alerts/Alert';
 
 
 function formatarCPF(cpf) {
@@ -24,56 +26,6 @@ const handleDelete = (id) => {
   console.log(`Deletar item com ID: ${id}`);
 };
 
-const customColumns = [
-  {
-    field: 'status',
-    headerName: 'Status',
-    flex: 0.7,
-    renderCell: (params) => (
-      <IconButton disabled>
-        {params.row.ativo ? <CheckCircleIcon style={{ color: 'green' }} /> : <CancelIcon style={{ color: 'gray' }} />}
-      </IconButton>
-    ),
-  },
-  {
-    field: 'id', headerName: 'CPF', type: 'number', flex: 1,
-    valueFormatter: (params) => formatarCPF(params.value.toString())
-  },
-  { field: 'fullName', headerName: 'Nome Completo', flex: 1.2 },
-  { field: 'email', headerName: 'E-mail', flex: 1.2 },
-  { field: 'tp', headerName: 'TP',flex: 0.5 },
-  { field: 'userName', headerName: 'Usuário', flex: 0.8 },
-  {
-    field: 'edit',
-    headerName: '',
-    flex: 0.5,
-    sortable: false,
-    renderCell: (params) => (
-      <IconButton 
-      aria-label="edit" 
-      size="small" 
-      onClick={() => handleEdit(params.row.id)} 
-      >
-        <EditOutlined />
-      </IconButton>
-    ),
-  },
-  {
-    field: 'delete',
-    headerName: '',
-    flex: 0.5,
-    sortable: false,
-    renderCell: (params) => (
-      <IconButton 
-      aria-label="delete" 
-      size="small" 
-      onClick={() => handleDelete(params.row.id)} 
-      >
-        <DeleteOutline />
-      </IconButton>
-    ),
-  },
-];
 
 const customRows = [
   { ativo: true, id: 12345678900, fullName: 'Usuário de Teste 01', email: 'xxxxxx@gmail.com', tp: 'ADM', userName: 'usuario01' },
@@ -90,6 +42,74 @@ const customRows = [
 
 function Usuarios() {
 
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    navigate ('/usuarios');
+    handleClose();
+  };
+
+  const customColumns = [
+    {
+      field: 'status',
+      headerName: 'Status',
+      flex: 0.7,
+      renderCell: (params) => (
+        <IconButton disabled>
+          {params.row.ativo ? <CheckCircleIcon style={{ color: 'green' }} /> : <CancelIcon style={{ color: 'gray' }} />}
+        </IconButton>
+      ),
+    },
+    {
+      field: 'id', headerName: 'CPF', type: 'number', flex: 1,
+      valueFormatter: (params) => formatarCPF(params.value.toString())
+    },
+    { field: 'fullName', headerName: 'Nome Completo', flex: 1.2 },
+    { field: 'email', headerName: 'E-mail', flex: 1.2 },
+    { field: 'tp', headerName: 'TP',flex: 0.5 },
+    { field: 'userName', headerName: 'Usuário', flex: 0.8 },
+    {
+      field: 'edit',
+      headerName: '',
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton 
+        aria-label="edit" 
+        size="small" 
+        onClick={() => handleEdit(params.row.id)} 
+        >
+          <EditOutlined />
+        </IconButton>
+      ),
+    },
+    {
+      field: 'delete',
+      headerName: '',
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton 
+        aria-label="delete" 
+        size="small" 
+        onClick={() => handleClickOpen(params.row.id)} 
+        >
+          <DeleteOutline />
+        </IconButton>
+      ),
+    },
+  ];
+  
+
   return (
     <>
       <div className="NavBar">
@@ -104,12 +124,18 @@ function Usuarios() {
                   ADICIONAR
                   </NavLink>
                   </CustomButton>
+                  <Alert
+                    open={open}
+                    handleClose={handleClose}
+                    title="Excluir Usuário"
+                    content="Tem certeza que deseja excluir o usuário?"
+                    agreeText={handleDelete}
+                    disagreeText={handleCancel}
+                  />
             <div className="tabela-usuario">
               <DataTable
                 rows={customRows}
                 columns={customColumns}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
               />
             </div>
           </div>

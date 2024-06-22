@@ -154,7 +154,7 @@ export default function Painel() {
 
       return (
         <>
-        <div className='geral'>
+        <div >
         <Grid container spacing={1} className='painelRecepcao'>
         {andares.map((andar, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={1.6} xl={1}>

@@ -8,8 +8,10 @@ import Label from "../../components/Texts/label/Label";
 import CustomInput from "../../components/input/input";
 import "../Styles/stylesCadastros.css";
 import Navbar from "../../components/navbar/Navbar";
+import CustomButton from "../../components/button/button";
+import { Link, NavLink } from 'react-router-dom'
 
-export default function Cad_empresas() {
+export default function Cad_pessoaJuridica() {
   return (
     <>
       <div className="NavBar">
@@ -31,7 +33,8 @@ export default function Cad_empresas() {
                   <CustomInput type="text" label="Razão social" inputProps={{ sx: { width: '610px' } }}/>
                 </div>
                 <div className="form-flex-row">
-                  <CustomInput type="text" label="Nome fantasia" inputProps={{ sx: { width: '610px' } }}/>
+                  <CustomInput type="text" label="Nome fantasia" inputProps={{ sx: { width: '250px' } }}/>
+                  <CustomInput type="text" label="E-mail" inputProps={{ sx: { width: '250px' } }}/>
                 </div>
                 <div className="form-flex-row">
                   <CustomInput type="text" label="Contato" inputProps={{ sx: { width: '250px' } }}/>
@@ -41,7 +44,14 @@ export default function Cad_empresas() {
                 <ButtonUpload label="Anexar Logo" className="buttonLogo" />
                 <Label text1="*Formato PNG" text2="*até 50MB" /><br/>
                 </div>
+                <div className="form-flex-row">
+                <CustomButton className="buttonAdd">
+                <NavLink to="/clientes" className='buttonAdd'>
+                  Voltar
+                  </NavLink>
+                  </CustomButton>
                 <ButtonSalve text="SALVAR" />
+              </div>
               </form>
             </div>
           </div>

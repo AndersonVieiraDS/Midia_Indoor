@@ -1,0 +1,49 @@
+.caixaTela {
+    border: 1px solid RGBA(217, 217, 217, 0.8);
+    text-align: center;
+    color: #090706;
+    border-radius: 8px;
+    margin: 12px;
+    box-shadow: 2px 4px rgba(0, 0, 0, 0.596);
+    background-color: #fbf8f6;
+
+
+
+}
+
+.tituloTela {
+    color: #fbf8f6;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fc5e05;
+    width: 200px;
+}
+
+.colunas{
+    width: 192px;
+    margin:2px auto 2px;
+    
+}
+
+.geral{
+    background: linear-gradient(90deg, rgba(252,94,5,0.3310574229691877) 0%, rgba(248,164,86,0.28904061624649857) 51%, rgba(238,103,14,0.2358193277310925) 100%);
+}
+
+/* Estilos padrão para telas maiores */
+
+
+
+@media (max-width: 768px) {
+    .caixaTela {
+        margin: 6px;
+    }
+
+    .tituloTela {
+        width: 150px;
+    }
+
+    .colunas {
+        width: 150px;
+    }
+}
+

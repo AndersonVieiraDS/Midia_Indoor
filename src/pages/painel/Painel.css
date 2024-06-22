@@ -2,5 +2,7 @@
     height: 100vh;
     gap: 10px;
     padding: 20px 10px 15px 10px;
-    
+    background: linear-gradient(90deg, rgba(252,94,5,0.3310574229691877) 0%, rgba(248,164,86,0.28904061624649857) 51%, rgba(238,103,14,0.2358193277310925) 100%);
 }
+  
+

@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "./carousel";
+import Carousel from "../Carousel/carousel";
 import { NavLink } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import "./TipoTela.css";
@@ -39,12 +39,12 @@ export default function TipoTela() {
                     Recepção
                   </Typography>
                   <p>
-                      Exibe as empresas que estão alocadas no condomínio. E as suas respectivas salas.
+                    Exibe as empresas que estão alocadas no condomínio. E as suas respectivas salas e andares.
                     </p>
                 </CardContent>
                 <CardActions>
                   <Button size='small'>
-                    <NavLink to="/telas/tvRecepcao" target="blank">
+                    <NavLink to="/telas/Recepcao" target="blank">
                       Selecionar
                     </NavLink>
                   </Button>
@@ -66,15 +66,15 @@ export default function TipoTela() {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    Torre
+                    Telas
                   </Typography>
                   <p>
-                    Exibe informativos.
+                    Exibe painel de monitoramentos das Tvs e suas respectivas telas.
                   </p>
                 </CardContent>
                 <CardActions>
                   <Button size="small">
-                    <NavLink to="/telas/tvTorre" target="blank">
+                    <NavLink to="/telas/monitoramento" >
                       Selecionar
                     </NavLink>
                   </Button>

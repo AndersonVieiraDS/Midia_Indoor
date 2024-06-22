@@ -1,39 +1,38 @@
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Usuarios from "./pages/usuarios/Usuarios";
 import Salas from "./pages/salas/Salas";
-import Empresas from "./pages/empresas/Empresas";
+import Clientes from "./pages/clientes/Clientes";
 import Midias from "./pages/midias/Midias";
-import Home from "./pages/home/Home";
-import Cad_empresas from "./pages/empresas/Cad_empresas";
+import TipoTela from "./pages/home/TipoTela";
+import Cad_pessoaJuridica from "./pages/clientes/Cad_pessoaJuridica";
 import Cad_midias from "./pages/midias/Cad_midias";
 import Cad_salas from "./pages/salas/Cad_salas";
 import Cad_usuarios from "./pages/usuarios/Cad_usuarios";
-import TipoTela from "./pages/Carousel/TipoTela";
 import Carousel from "./pages/Carousel/carousel";
 import Login from "./pages/login/Login";
-import HomeOperador from './pages/home/HomeOperador';
 import Painel from './pages/painel/Painel'
-import Cad_pessoaFisica from "./pages/empresas/Cad_pessoaFisica";
+import Cad_pessoaFisica from "./pages/clientes/Cad_pessoaFisica";
+import Telas from "./pages/telas/Telas";
 
 function Rotas() {
   return (
     <div className="Routes">
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<TipoTela />} />
         <Route path="/usuarios" element={<Usuarios />} />
         <Route path="/salas" element={<Salas />} />
-        <Route path="/empresas" element={<Empresas />} />
+        <Route path="/clientes" element={<Clientes />} />
         <Route path="/midias" element={<Midias />} />
-        <Route path="/empresas/cadastrojuridica" element={<Cad_empresas />} />
-        <Route path="/empresas/cadastrofisica" element={<Cad_pessoaFisica />} />
+        <Route path="/clientes/pessoajuridica" element={<Cad_pessoaJuridica />} />
+        <Route path="/clientes/pessoafisica" element={<Cad_pessoaFisica />} />
         <Route path="/midias/cadastromidias" element={<Cad_midias />} />
         <Route path="/salas/cadastrosalas" element={<Cad_salas />} />
         <Route path="/usuarios/cadastrousuarios" element={<Cad_usuarios />} />
-        <Route path="/telas" element={<TipoTela />} />
-        <Route path="/telas/tvTorre" element={<Carousel />} />
-        <Route path="/telas/tvRecepcao" element={<Painel />} />
-        <Route path="/homeOperador" element={<HomeOperador />} />
+        <Route path="/telas/monitoramento" element={<Telas />} />
+        <Route path="/telas/Recepcao" element={<Painel />} />
+        <Route path="/telas/monitoramento/exibicao" element={<Carousel />} />
+
 
 
       </Routes>
