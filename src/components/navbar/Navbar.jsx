@@ -3,10 +3,18 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import Logo_softex from "../logos/Logo_softex";
 import Logo_itbc from "../logos/logo_itbc";
+import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Tooltip from '@mui/material/Tooltip';
+import SettingsIcon from '@mui/icons-material/Settings';
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const handleSettingsClick = () => {
+    setSettingsOpen(!settingsOpen);
+  };
 
   return (
     <nav>
@@ -28,20 +36,38 @@ const Navbar = () => {
       </div>
       <ul className={menuOpen ? "open" : ""}>
         <li>
-          <NavLink to="/Home">Home</NavLink>
+        <Tooltip title="Home" placement="bottom">
+          <NavLink to="/Home"><HomeIcon /></NavLink>
+          </Tooltip>
         </li>
         <li>
-          <NavLink to="/usuarios">Usuários</NavLink>
-        </li>
-        <li>
+  <Tooltip
+    title={
+      <div className="setting-user">
+        <div>
+          <NavLink to="/usuarios">Usúarios</NavLink>
+        </div>
+        <div>
           <NavLink to="/salas">Salas</NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to="/clientes">Clientes</NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to="/midias">Mídias</NavLink>
-        </li>
+        </div>
+      </div>
+    }
+    placement="bottom"
+    interactive
+    open={settingsOpen}
+    onClose={() => setSettingsOpen(false)}
+    onOpen={handleSettingsClick}
+  >
+    <SettingsIcon className="settings-icon" />
+  </Tooltip>
+</li>
+
         <li>
           <NavLink to="/">
             <LogoutIcon />

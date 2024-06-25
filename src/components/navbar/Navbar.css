@@ -1,5 +1,5 @@
 .active  { /*reconhece o link ativo*/
-   color: #FC5E05;
+   color: #171411;
 }
 
 nav {
@@ -38,6 +38,7 @@ nav .tittle{
 
 nav ul {
     display: flex;
+    align-items: center;
 }
 
 nav ul li {
@@ -71,6 +72,7 @@ nav ul li a:not(.active):hover { /*não vai ter hover na página ativa*/
     justify-content: space-between;
     width: 2.25rem;
     height: 2rem;
+    
  }
 
  nav .menu span{
@@ -79,6 +81,36 @@ nav ul li a:not(.active):hover { /*não vai ter hover na página ativa*/
     background-color: #FC5E05;
     border-radius: 0.2rem;
  }
+
+ .settings-icon:hover {
+    color: #FC5E05; 
+    transition: color 0.3s ease;
+    cursor: pointer; 
+  }
+
+  .setting-user {
+   
+    color: #fff; 
+    padding: 10px 15px; 
+    font-size: 14px; 
+    border-radius: 5px; 
+  }
+  
+  .setting-user a {
+    color: #fff; 
+    text-decoration: none; 
+    display: block; 
+    padding: 5px 0; 
+  }
+  
+  .setting-user a:hover {
+    color: #171411; 
+    background-color: #FC5E05; 
+    transition: color 0.3s, background-color 0.3s; 
+  }
+  
+  
+
 
  @media (max-width: 992px){
     nav .menu{
