@@ -39,7 +39,7 @@ export default function TipoTela() {
                     Recepção
                   </Typography>
                   <p>
-                    Exibe as empresas que estão alocadas no condomínio. E as suas respectivas salas e andares.
+                    Exibe as empresas que estão alocadas no condomínio. 
                     </p>
                 </CardContent>
                 <CardActions>
@@ -69,7 +69,7 @@ export default function TipoTela() {
                     Telas
                   </Typography>
                   <p>
-                    Exibe painel de monitoramentos das Tvs e suas respectivas telas.
+                    Exibe painel de monitoramentos das Tvs.
                   </p>
                 </CardContent>
                 <CardActions>
