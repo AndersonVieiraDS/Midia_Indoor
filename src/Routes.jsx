@@ -13,6 +13,7 @@ import Login from "./pages/login/Login";
 import Painel from './pages/painel/Painel'
 import Cad_pessoaFisica from "./pages/clientes/Cad_pessoaFisica";
 import Telas from "./pages/telas/Telas";
+import Equipamentos from "./pages/equipamentos/Equipamentos"
 
 function Rotas() {
   return (
@@ -32,7 +33,7 @@ function Rotas() {
         <Route path="/telas/monitoramento" element={<Telas />} />
         <Route path="/telas/Recepcao" element={<Painel />} />
         <Route path="/telas/monitoramento/exibicao" element={<Carousel />} />
-
+        <Route path="/equipamentos" element={<Equipamentos />} />
 
 
       </Routes>

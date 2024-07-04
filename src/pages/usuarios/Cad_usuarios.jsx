@@ -37,20 +37,20 @@ function Cad_usuarios() {
                 </div>
               </div>
               <div className="form-flex-row">
-                <CustomInput type="text" label="Nome Completo" inputProps={{ sx: { width: '610px' } }}/>  
+                <CustomInput type="text" label="Nome Completo" inputProps={{ sx: { width: '710px' } }}/>  
               </div>
               <div className="form-flex-row">
-                <CustomInput type="text" label="CPF" onChange={formatarCPF} inputProps={{ sx: { width: '250px' } }}/>
-                <CustomInput type="email" label="E-mail" inputProps={{ sx: { width: '250px' } }}/>
+                <CustomInput type="text" label="CPF" onChange={formatarCPF} inputProps={{ sx: { width: '275px' } }}/>
+                <CustomInput type="email" label="E-mail" inputProps={{ sx: { width: '275px' } }}/>
               </div>
               <div className="form-flex-row">
-                <CustomInput type="text" label="Login" inputProps={{ sx: { width: '250px' } }}/>
-                <CustomInput type="password" label="Senha" inputProps={{ sx: { width: '250px' } }}/>
+                <CustomInput type="text" label="Login" inputProps={{ sx: { width: '275px' } }}/>
+                <CustomInput type="password" label="Senha" inputProps={{ sx: { width: '275px' } }}/>
               </div>
               <div className="form-flex-row">
               <CustomButton className="buttonAdd">
                 <NavLink to="/usuarios" className='buttonAdd'>
-                  Voltar
+                  Cancelar
                   </NavLink>
                   </CustomButton>
                 <ButtonSalve text="SALVAR" />

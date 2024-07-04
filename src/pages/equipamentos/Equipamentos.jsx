@@ -10,6 +10,8 @@ import CustomButton from "../../components/button/button";
 import { Link, NavLink } from 'react-router-dom';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckboxStatus from "../../components/CheckBox/CheckBoxStatus"
+import Subtitle from "../../components/Texts/Subtitle/Subtitle";
 import { useNavigate } from 'react-router-dom';
 import Alert from '../../components/alerts/Alert';
 
@@ -21,20 +23,18 @@ const handleDelete = (id) => {
   console.log(`Deletar item com ID: ${id}`);
 };
 
-
-
 const customRows = [
-  {ativo: true, id: 102, andar: "1º Andar" },
-  {ativo: false, id: 3, andar: "Mezanino" },
-  {ativo: true, id: 305, andar: "3º Andar" },
-  {ativo: false, id: 501, andar: "5º Andar" },
-  {ativo: true, id: 603, andar: "6º Andar" },
+  {ativo: true, id: "01", nome: "Tv 001", andar: "Mezanino" },
+  {ativo: false, id: "02", nome: "Tv 101", andar: "1º Andar" },
+  {ativo: true, id: "03", nome: "Tv 302", andar: "3º Andar" },
+  {ativo: false, id: "04", nome: "Tv 501", andar: "5º Andar" },
+  {ativo: true, id: "05", nome: "Tv 603", andar: "6º Andar" },
   // Adicione mais usuários conforme necessário
   // Preencha com os dados necessários
   // ...
 ];
 
-export default function Cad_salas() {
+export default function Equipamentos() {
 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export default function Cad_salas() {
   };
 
   const handleCancel = () => {
-    navigate ('/salas/cadastrosalas');
+    navigate ('/equipamentos');
     handleClose();
   };
 
@@ -64,7 +64,8 @@ export default function Cad_salas() {
       ),
     },
     { field: "andar", headerName: "Andar", flex: 1.5 },
-    { field: "id", headerName: "Sala", flex: 1 },
+    { field: "id", headerName: "Equipamento", flex: 1 },
+    { field: "nome", headerName: "Descrição", flex: 1 },
     {
       field: "edit",
       headerName: "",
@@ -102,33 +103,32 @@ export default function Cad_salas() {
       <div className="NavBar">
         <Navbar />
       </div>
-      <div className="cad-sala">
-        <div className="cad-salas-container">
-          <div className="cad-dados-salas">
-                <div className="geral-salascad" >
+      <div className="cad-equipamento">
+        <div className="cad-equipamento-container">
+          <div className="cad-dados-equipamento">
+                <div className="geral-equipamento-cad" >
                   <div > 
-                    <div className="input-salascad">
+                    <div className="input-equipamento-cad">
+                    <div>
+                  <Subtitle text="Status" />
+                  <CheckboxStatus />
+                </div>
                       <CustomInput type="text" label="Andar" inputProps={{ sx: { width: '250px' } }} />
-                      <CustomInput type="text" label="Salas" inputProps={{ sx: { width: '250px' } }} />
-                      <div className="form-flex-row">
-                        <CustomButton>
-                          <NavLink to="/salas" className="buttonAdd">
-                            Cancelar
-                          </NavLink>
-                        </CustomButton>
-                        <ButtonSalve text="SALVAR" />
-                      </div>
+                      <CustomInput type="text" label="Equipamento" inputProps={{ sx: { width: '250px' } }} />
+                      <CustomInput type="text" label="Descrição" inputProps={{ sx: { width: '250px' } }} />
+                      <ButtonSalve text="SALVAR" />
+                     
                     </div>
                   </div>
                   <Alert
                     open={open}
                     handleClose={handleClose}
-                    title="Excluir Sala"
-                    content="Tem certeza que deseja excluir a sala?"
+                    title="Excluir Equipamento"
+                    content="Tem certeza que deseja excluir o equipamento?"
                     agreeText={handleDelete}
                     disagreeText={handleCancel}
                   />
-                  <div className="tabela-salascad">
+                  <div className="tabela-equipamento-cad">
                     <DataTable
                       rows={customRows}
                       columns={customColumns}

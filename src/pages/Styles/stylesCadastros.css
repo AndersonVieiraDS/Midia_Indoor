@@ -1,4 +1,4 @@
-.cad-usuario, .cad-sala, .cad-midia, .cad-empresa {
+.cad-usuario, .cad-sala, .cad-midia, .cad-empresa, .cad-equipamento {
   background-image: url('../../imagens/fundo.tela.b.jpg');
   background-size: cover;
   background-position: center;
@@ -8,7 +8,7 @@
   margin: 0;
 }
   
-.cad-usuario-container,.cad-salas-container, .cad-midia-container, .cad-empresa-container  {
+.cad-usuario-container,.cad-salas-container, .cad-midia-container, .cad-empresa-container, .cad-equipamento-container  {
   display: flex;
   flex-direction: column;
   text-align: justify;
@@ -16,15 +16,22 @@
   font-family: 'Georama', sans-serif;   
 }
     
-.cad-dados-usuario, .cad-dados-salas, .cad-dados-midia,  .cad-dados-empresa  {    
-  width: 60%;
+.cad-dados-usuario, .cad-dados-salas, .cad-dados-midia,  .cad-dados-empresa, .cad-dados-equipamento {    
+  /*width: 60%;
   background-color: rgba(248, 213, 168, 0.62);
   height: 80%;
   border-radius: 1%;
   padding: 20px;
   margin-left: 20px;
   min-width: 350px;
-  margin: 3%; 
+  margin: 3%; */
+  width: 70%;
+  margin: 5%;
+  background-color: rgba(248, 213, 168, 0.62);
+  height: 100%;
+  border-radius: 2%;
+  padding: 10px;
+  min-width: 350px;
 }  
 
 .form-flex-row {
@@ -37,6 +44,21 @@
 
 .anexos-right {
   text-align: center;
+}
+
+.geral-salascad, .geral-equipamento-cad {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-salascad, .input-equipamento-cad {
+  width: 80%;
+  padding: 20px;
+}
+
+.tabela-salascad, .tabela-equipamento-cad {
+  padding: 5px;
+  width: 80%; 
 }
 
 .data-pick {

@@ -46,10 +46,10 @@ function Cad_midias() {
                 </div>
               </div>
               <div className="form-flex-row">
-                <CustomInput type="text" label="Titulo" inputProps={{ sx: { width: '630px' } }} />
+                <CustomInput type="text" label="Titulo" inputProps={{ sx: { width: '710px' } }} />
               </div>
               <div className="form-flex-row">
-              <CustomInput type="text" label="Descrição" inputProps={{ sx: { width: '630px' ,height: '60px'} }}/>
+              <CustomInput type="text" label="Descrição" inputProps={{ sx: { width: '710px' ,height: '60px'} }}/>
               </div>
               <div className="form-flex-row">
                 <div className="input-salas">
@@ -69,7 +69,7 @@ function Cad_midias() {
               <div className="form-flex-row">
                 <CustomButton className="buttonAdd">
                 <NavLink to="/midias" className='buttonAdd'>
-                  Voltar
+                  Cancelar
                   </NavLink>
                   </CustomButton>
                 <ButtonSalve text="SALVAR" />

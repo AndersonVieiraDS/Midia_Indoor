@@ -27,17 +27,17 @@ export default function Cad_pessoaFisica() {
                     <Subtitle text="Status" />
                     <CheckboxStatus />
                   </div>
-                  <CustomInput type="text" label="CPF" inputProps={{ sx: { width: '350px' } }}/>
+                  <CustomInput type="text" label="CPF" inputProps={{ sx: { width: '390px' } }}/>
                 </div>
                 <div className="form-flex-row">
-                  <CustomInput type="text" label="Nome" inputProps={{ sx: { width: '610px' } }}/>
+                  <CustomInput type="text" label="Nome" inputProps={{ sx: { width: '710px' } }}/>
                 </div>
                 <div className="form-flex-row">
-                  <CustomInput type="text" label="E-mail" inputProps={{ sx: { width: '610px' } }}/>
+                  <CustomInput type="text" label="E-mail" inputProps={{ sx: { width: '710px' } }}/>
                 </div>
                 <div className="form-flex-row">
-                  <CustomInput type="text" label="Contato" inputProps={{ sx: { width: '250px' } }}/>
-                  <CustomInput type="text" label="Telefone" inputProps={{ sx: { width: '250px' } }}/>
+                  <CustomInput type="text" label="Contato" inputProps={{ sx: { width: '275px' } }}/>
+                  <CustomInput type="text" label="Telefone" inputProps={{ sx: { width: '275px' } }}/>
                 </div>
                 <div className="anexos-right">
                 <ButtonUpload label="Anexar Logo" className="buttonLogo" />
@@ -46,7 +46,7 @@ export default function Cad_pessoaFisica() {
                 <div className="form-flex-row">
                 <CustomButton className="buttonAdd">
                 <NavLink to="/clientes" className='buttonAdd'>
-                  Voltar
+                  Cancelar
                   </NavLink>
                   </CustomButton>
                 <ButtonSalve text="SALVAR" />

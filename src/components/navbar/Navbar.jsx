@@ -45,16 +45,19 @@ const Navbar = () => {
     title={
       <div className="setting-user">
         <div>
-          <NavLink to="/usuarios">Usúarios</NavLink>
+          <NavLink to="/clientes">Clientes</NavLink>
+        </div>
+        <div>
+          <NavLink to="/equipamentos">Equipamentos</NavLink>
+        </div>
+        <div>
+          <NavLink to="/midias">Mídias</NavLink>
         </div>
         <div>
           <NavLink to="/salas">Salas</NavLink>
         </div>
         <div>
-          <NavLink to="/clientes">Clientes</NavLink>
-        </div>
-        <div>
-          <NavLink to="/midias">Mídias</NavLink>
+          <NavLink to="/usuarios">Usúarios</NavLink>
         </div>
       </div>
     }
