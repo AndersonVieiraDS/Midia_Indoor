@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import CustomButton from "../../components/button/button";
 import DataTable from "../../components/tabela/tabela";
-import Title from "../../components/Texts/Title/Title";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DeleteOutline, EditOutlined } from "@mui/icons-material";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { IconButton } from "@mui/material";
@@ -10,7 +9,6 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import "../Styles/stylesPages.css";
 import Navbar from "../../components/navbar/Navbar";
-import { useNavigate } from 'react-router-dom';
 import Alert from '../../components/alerts/Alert';
 import AlertImage from '../../components/alerts/AlertImage';
 import imagem1 from '../../imagens/testeCarousel/Teste1.png';
@@ -19,10 +17,8 @@ import imagem3 from '../../imagens/testeCarousel/Teste3.png';
 import imagem4 from '../../imagens/testeCarousel/Teste4.png';
 import imagem5 from '../../imagens/testeCarousel/Teste5.png';
 
-
-
-const handleEdit = (id) => {
-  console.log(`Editar item com ID: ${id}`);
+const handleEdit = (id, navigate) => {
+  navigate(`/midias/edit/${id}`);
 };
 
 const handlePreview = (id) => {
@@ -32,7 +28,6 @@ const handlePreview = (id) => {
 const handleDelete = (id) => {
   console.log(`Deletar item com ID: ${id}`);
 };
-
 
 const customRows = [
   {
@@ -80,8 +75,6 @@ const customRows = [
     finale: "31/12/2023",
     preview: imagem5,
   },
-  // Adicione mais usuários conforme necessário
-  // Preencha com os dados necessários do banco de dados
 ];
 
 function Midias() {
@@ -135,6 +128,7 @@ function Midias() {
     { field: "tm", headerName: "TM", flex: 1 },
     { field: "start", headerName: "Período Inicial", flex: 1.5 },
     { field: "finale", headerName: "Período Final", flex: 1.5 },
+    
     {
       field: "edit",
       headerName: "",
@@ -144,7 +138,7 @@ function Midias() {
         <IconButton
           aria-label="edit"
           size="small"
-          onClick={() => handleEdit(params.row.id)}
+          onClick={() => handleEdit(params.row.id, navigate)}
         >
           <EditOutlined />
         </IconButton>
