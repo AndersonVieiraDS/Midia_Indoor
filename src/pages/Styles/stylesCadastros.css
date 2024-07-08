@@ -40,7 +40,26 @@
   align-items: center;
   margin-bottom: 5px; /* ajuste conforme necessário */
   justify-content: space-around;
+  margin-left: 22px;
+  
 }
+
+.td{
+ 
+  margin: 1em auto;
+    display: block;
+    width: 100px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #F7934C;
+    font-size: 18px;
+    color: #eee ;
+    padding: 10px;
+    margin-right: 40px;
+    
+}
+
 
 .anexos-right {
   text-align: center;

@@ -106,20 +106,24 @@ export default function Cad_salas() {
         <div className="cad-salas-container">
           <div className="cad-dados-salas">
                 <div className="geral-salascad" >
-                  <div > 
+                  <div className="ttt" > 
                     <div className="input-salascad">
                       <CustomInput type="text" label="Andar" inputProps={{ sx: { width: '250px' } }} />
                       <CustomInput type="text" label="Salas" inputProps={{ sx: { width: '250px' } }} />
                       <div className="form-flex-row">
-                        <CustomButton>
+                       
+                       
+                        <div className="td">
                           <NavLink to="/salas" className="buttonAdd">
                             Cancelar
                           </NavLink>
-                        </CustomButton>
+                          </div>
+                      
                         <ButtonSalve text="SALVAR" />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                 
                   <Alert
                     open={open}
                     handleClose={handleClose}

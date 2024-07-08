@@ -9,6 +9,12 @@
     font-size: 18px;
     color: #eee ;
     padding: 10px;
+    cursor: pointer;
     
-   
+}
+
+.buttonSalve:hover{
+    color: #FC5E05; 
+    transition: color 0.3s ease;
+    cursor: pointer;
 }
