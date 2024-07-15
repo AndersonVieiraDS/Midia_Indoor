@@ -16,6 +16,7 @@ import imagem2 from '../../imagens/testeCarousel/Teste2.png';
 import imagem3 from '../../imagens/testeCarousel/Teste3.png';
 import imagem4 from '../../imagens/testeCarousel/Teste4.png';
 import imagem5 from '../../imagens/testeCarousel/Teste5.png';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const handleEdit = (id, navigate) => {
   navigate(`/midias/edit/${id}`);
@@ -111,6 +112,10 @@ function Midias() {
     navigate('/midias');
     handleCloseImage();
   }
+  const handleConfig = () => {
+    navigate('/midias/config');
+    handleCloseImage();
+  }
 
   const customColumns = [
     {
@@ -129,6 +134,21 @@ function Midias() {
     { field: "start", headerName: "Período Inicial", flex: 1.5 },
     { field: "finale", headerName: "Período Final", flex: 1.5 },
     
+    {
+      field: "config",
+      headerName: "",
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton
+          aria-label="config"
+          size="small"
+          onClick={() => handleConfig(params.row.id, navigate)}
+        >
+          <SettingsIcon />
+        </IconButton>
+      ),
+    },
     {
       field: "edit",
       headerName: "",

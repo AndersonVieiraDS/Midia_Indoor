@@ -100,12 +100,6 @@ function EditMedia() {
                   </div>
                 </div>
                 <div className="form-flex-row">
-                  <SubTitle text="Período de exibição" />
-                </div>
-                <div className="data-pick">
-                  <ResponsiveDatePickers value={media.start} name="start" onChange={(date) => setMedia({ ...media, start: date })} />
-                </div>
-                <div className="form-flex-row">
                   <CustomButton className="buttonAdd">
                     <NavLink to="/midias" className='buttonAdd'>
                       Cancelar

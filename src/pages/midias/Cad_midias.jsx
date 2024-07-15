@@ -60,12 +60,7 @@ function Cad_midias() {
                   <Label text1="*Máx. imagem 150MB" text2="*Máx. vídeo 4k 30fps de até 30 segundos." />
                 </div>
               </div>
-              <div className="form-flex-row">
-                <Subtitle text="Período de exibição" />
-              </div>
-              <div className="data-pick">
-                <ResponsiveDatePickers />
-              </div>
+
               <div className="form-flex-row">
                 <CustomButton className="buttonAdd">
                 <NavLink to="/midias" className='buttonAdd'>

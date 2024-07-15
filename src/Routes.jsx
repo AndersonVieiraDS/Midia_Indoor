@@ -15,6 +15,7 @@ import Cad_pessoaFisica from "./pages/clientes/Cad_pessoaFisica";
 import Telas from "./pages/telas/Telas";
 import Equipamentos from "./pages/equipamentos/Equipamentos"
 import EditMedia from './pages/midias/EditMedia';
+import ConfigMidias from "./pages/midias/ConfigMidias";
 
 function Rotas() {
   return (
@@ -27,6 +28,7 @@ function Rotas() {
         <Route path="/clientes" element={<Clientes />} />
         <Route path="/midias" element={<Midias />} />
         <Route path="/midias/edit/:id" element={<EditMedia />} />
+        <Route path="/midias/config" element={<ConfigMidias />} />
         <Route path="/clientes/pessoajuridica" element={<Cad_pessoaJuridica />} />
         <Route path="/clientes/pessoafisica" element={<Cad_pessoaFisica />} />
         <Route path="/midias/cadastromidias" element={<Cad_midias />} />
