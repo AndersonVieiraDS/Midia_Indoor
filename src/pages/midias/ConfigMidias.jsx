@@ -108,9 +108,11 @@ function ConfigMidias() {
                   onChange={(date) => setConfig({ ...config, start: date })} 
                 />
               </div>
+              <div className='form-flex'>
               <div className="form-flex-column">
                 <SubTitle text="Dias da Semana" />
                 <div className="checkbox-group">
+                  <div className='checkbox-item'>
                   <label>
                     <input
                       type="checkbox"
@@ -131,9 +133,11 @@ function ConfigMidias() {
                   ))}
                 </div>
               </div>
+              </div>
               <div className="form-flex-column">
                 <SubTitle text="Locais" />
                 <div className="checkbox-group">
+                  <div className='checkbox-item'>
                   <label>
                     <input
                       type="checkbox"
@@ -154,7 +158,10 @@ function ConfigMidias() {
                   ))}
                 </div>
               </div>
+              </div>
+              </div>
               <div className="form-flex-row">
+                
                   <CustomButton className="buttonAdd">
                     <NavLink to="/midias" className='buttonAdd'>
                       Cancelar
