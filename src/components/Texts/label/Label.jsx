@@ -1,5 +1,5 @@
 import React from 'react';
-import './label.css'
+import './Label.css'
 
 export default function Label({text1, text2}) {
   return (

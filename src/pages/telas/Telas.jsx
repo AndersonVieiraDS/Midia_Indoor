@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import TvsTab from '../../components/tabelaTvs/tabelaTvs';
 import Navbar from "../../components/navbar/Navbar";
 import "../Styles/stylesPages.css";
-import "./telas.css";
+import "./Telas.css";
 import CustomButton from "../../components/button/button";
 import { Link, NavLink } from 'react-router-dom'
 

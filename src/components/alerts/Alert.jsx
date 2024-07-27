@@ -46,8 +46,8 @@ Alert.propTypes = {
   handleClose: PropTypes.func.isRequired,
   title: PropTypes.string,
   content: PropTypes.string,
-  disagreeText: PropTypes.string,
-  agreeText: PropTypes.string,
+  disagreeText: PropTypes.func,
+  agreeText: PropTypes.func,
 };
 
 

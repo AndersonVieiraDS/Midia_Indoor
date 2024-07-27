@@ -1,3 +1,5 @@
+
+
 const listaUsuario = () => {
     return fetch(/*`http://localhost:3000/usuario`- colocar o http do bd.json*/).then((resposta) => {
       if (resposta.ok) {
@@ -5,7 +7,9 @@ const listaUsuario = () => {
       }
       throw new Error("Não foi possível listar os Usuários");
     });
+  
   };
+
   
   const criarUsuario = (id, fullName, email, tp, userName, password) => {
     return fetch(/*`http://localhost:3000/usuario`,*/ {

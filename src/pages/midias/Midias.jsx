@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { format } from 'date-fns';
 import CustomButton from "../../components/button/button";
 import DataTable from "../../components/tabela/tabela";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -30,7 +32,7 @@ const handleDelete = (id) => {
   console.log(`Deletar item com ID: ${id}`);
 };
 
-const customRows = [
+/*const customRows = [
   {
     ativo: true,
     id: "Campanha Natal",
@@ -76,21 +78,38 @@ const customRows = [
     finale: "31/12/2023",
     preview: imagem5,
   },
-];
+];*/
 
 function Midias() {
 
+  const [medias, setMedias] = useState([]);
   const [open, setOpen] = useState(false);
+  const [selectedMidiaId, setSelectedMidiaId] = useState(null);
   const [openImage, setOpenImage] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const navigate = useNavigate();
 
-  const handleClickOpen = () => {
+  useEffect(() => {
+    axios.get('http://localhost:8000/midias')
+      .then((response) => {
+        setMedias(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching users:', error);
+      });
+  }, []);
+
+  const formatDate = (date) => {
+    return format(new Date(date), 'dd/MM/yyyy');
+  };
+
+  const handleClickOpen = (id) => {
+    setSelectedMidiaId(id);
     setOpen(true);
   };
 
-  const handleClickOpenImage = (imageUrl) => {
-    setSelectedImage(imageUrl);
+  const handleClickOpenImage = (id) => {
+    setSelectedMidiaId(id);
     setOpenImage(true);
   }
 
@@ -108,10 +127,10 @@ function Midias() {
     handleClose();
   };
 
-  const handleConfirmText = () => {
+  /*const handleConfirmText = () => {
     navigate('/midias');
     handleCloseImage();
-  }
+  }*/
   const handleConfig = () => {
     navigate('/midias/config');
     handleCloseImage();
@@ -128,11 +147,15 @@ function Midias() {
         </IconButton>
       ),
     },
-    { field: "id", headerName: "Título", flex: 2},
-    { field: "cliente", headerName: "Cliente", flex: 2.5 },
-    { field: "tm", headerName: "TM", flex: 1 },
-    { field: "start", headerName: "Período Inicial", flex: 1.5 },
-    { field: "finale", headerName: "Período Final", flex: 1.5 },
+    { field: "titulo", headerName: "Título", flex: 2},
+    { field: "cliente", headerName: "Cliente", flex: 2 },
+    { field: "tipo", headerName: "TM", flex: 1 },
+    { field: "data_inicio", headerName: "Período Inicial", flex: 1.3, renderCell: (params) => (
+      <span>{formatDate(params.value)}</span>
+    ),},
+    { field: "data_fim", headerName: "Período Final", flex: 1.3, renderCell: (params) => (
+      <span>{formatDate(params.value)}</span>
+    ),},
     
     {
       field: "config",
@@ -215,19 +238,19 @@ function Midias() {
                     handleClose={handleClose}
                     title="Excluir Mídia"
                     content="Tem certeza que deseja excluir a mídia?"
-                    agreeText={handleDelete}
+                    agreeText={() => handleDelete(selectedMidiaId)}
                     disagreeText={handleCancel}
                   />
                   <AlertImage
                     open={openImage}
                     handleClose={handleCloseImage}
                     title="Visualizar Mídia"
-                    imageUrl={selectedImage}
+                    imageUrl={selectedMidiaId}
                     confirmText="Voltar"
                   />
           <div className="tabela-midia">
             <DataTable
-              rows={customRows}
+              rows={medias}
               columns={customColumns}
             />
           </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import Logo_softex from "../logos/Logo_softex";
-import Logo_itbc from "../logos/logo_itbc";
+import Logo_itbc from "../logos/Logo_itbc";
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Tooltip from '@mui/material/Tooltip';
@@ -62,7 +62,7 @@ const Navbar = () => {
       </div>
     }
     placement="bottom"
-    interactive
+    interactive="true"
     open={settingsOpen}
     onClose={() => setSettingsOpen(false)}
     onOpen={handleSettingsClick}

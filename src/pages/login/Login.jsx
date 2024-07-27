@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
 import CustomInput from "../../components/input/input";
 import ButtonSalve from "../../components/buttonsalve/ButtonSalve";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 import InputAdornment from "@mui/material/InputAdornment";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -12,19 +14,33 @@ import Title from '../../components/Texts/Title/Title'
 import Linha from '../../imagens/Line1.svg'
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // ... (seu código de login)
+    console.log('Login attempt with:', { login, senha });
+    try {
+      const response = await axios.post('http://localhost:8000/', {
+        login,
+        senha
+      });
+
+      if (response.status === 200) {
+        setLoggedIn(true);
+        navigate("/home");
+      } else {
+        alert('Login ou senha incorretos.')
+        console.error('Erro no login:', response.statusText);
+      }
+    } catch (error) {
+      alert('Por favor, faça login para continuar')
+      console.error('Erro na requisição de login:', error);
+    }
   };
 
-  const handleAdminChange = (event) => {
-    setIsAdmin(event.target.value);
-  };
 
   return (
     <div className="container">
@@ -39,7 +55,7 @@ const Login = () => {
         </div>
 
         <div className="linha">
-          <img src={ Linha }/>
+          <img src={Linha} />
         </div>
 
         <div className="form-container">
@@ -48,15 +64,15 @@ const Login = () => {
           ) : (
             <form onSubmit={handleLogin}>
               <div>
-                <Title  text='Login'/>
+                <Title text='Login' />
               </div>
               <CustomInput
                 style={{ width: "100%" }}
                 type="text"
                 label="Usuário"
                 variant="standard"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={login}
+                onChange={(e) => setLogin(e.target.value)}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -70,8 +86,8 @@ const Login = () => {
                 type="password"
                 label="Senha"
                 variant="standard"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -83,9 +99,7 @@ const Login = () => {
               <br />
               <p className="text">Esqueceu a senha?</p>
               <br />
-              <NavLink to="/Home" className="buttonLogin">
-                <ButtonSalve type="submit" text="Entrar" />
-              </NavLink>
+              <ButtonSalve type="submit" text="Entrar" />
             </form>
           )}
         </div>

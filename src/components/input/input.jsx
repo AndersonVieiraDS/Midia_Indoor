@@ -8,7 +8,7 @@ export default function CustomInput(props) {
 
   return (
     <Box
-      component="form"
+      //component="form"
       sx={{
         '& > :not(style)': {marginTop:"1em" }, 
       }}

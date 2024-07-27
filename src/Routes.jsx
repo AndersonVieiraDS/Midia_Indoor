@@ -16,6 +16,7 @@ import Telas from "./pages/telas/Telas";
 import Equipamentos from "./pages/equipamentos/Equipamentos"
 import EditMedia from './pages/midias/EditMedia';
 import ConfigMidias from "./pages/midias/ConfigMidias";
+import EditarUsuario from "./pages/usuarios/Edit_usuarios";
 
 function Rotas() {
   return (
@@ -33,12 +34,12 @@ function Rotas() {
         <Route path="/clientes/pessoafisica" element={<Cad_pessoaFisica />} />
         <Route path="/midias/cadastromidias" element={<Cad_midias />} />
         <Route path="/salas/cadastrosalas" element={<Cad_salas />} />
-        <Route path="/usuarios/cadastrousuarios" element={<Cad_usuarios />} />
+        <Route path="/usuarios/cadastro" element={<Cad_usuarios />} />
         <Route path="/telas/monitoramento" element={<Telas />} />
         <Route path="/telas/Recepcao" element={<Painel />} />
         <Route path="/telas/monitoramento/exibicao" element={<Carousel />} />
         <Route path="/equipamentos" element={<Equipamentos />} />
-
+        <Route path="/usuarios/editar/:id" element={<EditarUsuario />} />
 
       </Routes>
     </div>
