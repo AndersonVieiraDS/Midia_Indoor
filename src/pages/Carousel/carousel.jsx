@@ -1,42 +1,83 @@
-import React, { useState, useEffect } from 'react';
-import imagem1 from '../../imagens/testeCarousel/Teste1.png';
-import imagem2 from '../../imagens/testeCarousel/Teste2.png';
-import imagem3 from '../../imagens/testeCarousel/Teste3.png';
-import imagem4 from '../../imagens/testeCarousel/Teste4.png';
-import imagem5 from '../../imagens/testeCarousel/Teste5.png';
+import React, { useState, useEffect, useRef } from 'react';
+import { loadMedia } from '../Carousel/mediaLoader'; // Ajuste o caminho conforme necessário
 import './carousel.css';
 
 const Carousel = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const images = [
-    imagem1,
-    imagem2,
-    imagem3,
-    imagem4,
-    imagem5,
-    // Adicione mais caminhos de imagens conforme necessário
-  ];
+  const [media, setMedia] = useState([]);
+  const [currentMedia, setCurrentMedia] = useState(0);
+  const videoRef = useRef([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const nextImage = (currentImage + 1) % images.length;
-      setCurrentImage(nextImage);
-    }, 3000); // Altera a cada 3 segundos (3000ms)
+    const loadedMedia = loadMedia();
+    setMedia(loadedMedia);
+  }, []);
 
-    return () => clearInterval(timer);
-  }, [currentImage, images.length]);
+  useEffect(() => {
+    if (media.length > 0) {
+      const handleMediaChange = () => {
+        const nextMedia = (currentMedia + 1) % media.length;
+        setCurrentMedia(nextMedia);
+      };
+
+      if (media[currentMedia].default.endsWith('.mp4') || media[currentMedia].default.endsWith('.webm')) {
+        const video = videoRef.current[currentMedia];
+        if (video) {
+          video.onended = handleMediaChange;
+          video.play().catch(error => {
+            console.error('Erro ao tentar reproduzir o vídeo:', error);
+          });
+        }
+      } else {
+        const timer = setInterval(() => {
+          handleMediaChange();
+        }, 3000);
+
+        return () => clearInterval(timer);
+      }
+    }
+  }, [currentMedia, media]);
+
+  useEffect(() => {
+    // Pausa todos os vídeos não ativos e redefine o tempo
+    videoRef.current.forEach((video, index) => {
+      if (video && index !== currentMedia) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  }, [currentMedia]);
+
+  if (media.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="carousel">
-      <div className="carousel-images">
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Imagem ${index + 1}`}
-            style={{ display: index === currentImage ? 'block' : 'none' }}
-          />
-        ))}
+      <div className="carousel-media">
+        {media.map((item, index) => {
+          const mediaUrl = item.default;
+          if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm')) {
+            return (
+              <video
+                key={index}
+                ref={(el) => videoRef.current[index] = el}
+                src={mediaUrl}
+                style={{ display: index === currentMedia ? 'block' : 'none' }}
+                controls
+                autoPlay
+              />
+            );
+          } else {
+            return (
+              <img
+                key={index}
+                src={mediaUrl}
+                alt={`Media ${index + 1}`}
+                style={{ display: index === currentMedia ? 'block' : 'none' }}
+              />
+            );
+          }
+        })}
       </div>
     </div>
   );

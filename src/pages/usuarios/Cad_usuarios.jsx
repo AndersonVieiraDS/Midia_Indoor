@@ -15,14 +15,15 @@ import { Link, NavLink } from 'react-router-dom'
 function Cad_usuarios() {
 
   const [user, setUser] = useState({
-    status: false,
-    tipo: false,
-    nome: '',
+    status: '',
+    tipo_usuario: '',
+    nome_completo: '',
     cpf: '',
     email: '',
     login: '',
     senha: '',
   });
+  
 
 
   const handleChange = (e) => {
@@ -35,8 +36,9 @@ function Cad_usuarios() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(user);
 
-    axios.post('http://localhost:8000/usuarios', user)
+    axios.post('api/usuarios', user)
       .then((response) => {
         console.log('Usuário cadastrado com sucesso:', response.data);
       })
@@ -62,12 +64,12 @@ function Cad_usuarios() {
                 </div>
                 <div>
                   <Subtitle text="Tipo de Usuário" />
-                  <CheckboxUser name="tipo" checked={user.tipo} onChange={handleChange} />
+                  <CheckboxUser name="tipo_usuario" checked={user.tipo_usuario} onChange={handleChange} />
                 </div>
               </div>
               <div className="form-flex-row">
-                <CustomInput type="text" label="Nome Completo" name="nome"
-                  value={user.nome} onChange={handleChange} inputProps={{ sx: { width: '710px' } }} />
+                <CustomInput type="text" label="Nome Completo" name="nome_completo"
+                  value={user.nome_completo} onChange={handleChange} inputProps={{ sx: { width: '710px' } }} />
               </div>
               <div className="form-flex-row">
                 <CustomInput type="text" label="CPF" name="cpf"

@@ -7,20 +7,33 @@
   align-items: center;
 }
 
-.carousel-images {
+.carousel-media {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-.carousel-images img {
+.carousel-media img,
+.carousel-media video {
   display: block;
-  max-width: 800px;
-  max-height: 600px;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.carousel-media img {
+  object-fit: contain; 
+}
+
+.carousel-media video {
+  object-fit: cover; 
 }
 
 @media (max-width: 1280px) {
-  .carousel-images img {
+  .carousel-media img {
     max-width: 90%;
     max-height: 90%;
     padding-left: 2px;
@@ -29,7 +42,7 @@
 }
 
 @media (max-width: 480px) {
-  .carousel-images img {
+  .carousel-media img {
     max-width: 80%;
     max-height: 90%;
     padding-left: 2px;

@@ -13,11 +13,6 @@ import "../Styles/stylesPages.css";
 import Navbar from "../../components/navbar/Navbar";
 import Alert from '../../components/alerts/Alert';
 import AlertImage from '../../components/alerts/AlertImage';
-import imagem1 from '../../imagens/testeCarousel/Teste1.png';
-import imagem2 from '../../imagens/testeCarousel/Teste2.png';
-import imagem3 from '../../imagens/testeCarousel/Teste3.png';
-import imagem4 from '../../imagens/testeCarousel/Teste4.png';
-import imagem5 from '../../imagens/testeCarousel/Teste5.png';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 const handleEdit = (id, navigate) => {
