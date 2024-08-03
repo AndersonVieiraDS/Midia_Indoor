@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import ButtonSalve from "../../components/buttonsalve/ButtonSalve";
-import Title from "../../components/Texts/Title/Title";
-import CheckboxUser from "../../components/CheckBox/CheckBox";
-import CheckboxStatus from "../../components/CheckBox/CheckBoxStatus"
 import Subtitle from "../../components/Texts/Subtitle/Subtitle";
 import CustomInput from "../../components/input/input";
 import "../Styles/stylesCadastros.css";
 import Navbar from "../../components/navbar/Navbar";
 import CustomButton from "../../components/button/button";
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-
-function Cad_usuarios() {
+export default function Cad_usuarios() {
 
   const [user, setUser] = useState({
     status: '',
@@ -23,8 +19,6 @@ function Cad_usuarios() {
     login: '',
     senha: '',
   });
-  
-
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -34,17 +28,18 @@ function Cad_usuarios() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
 
-    axios.post('api/usuarios', user)
-      .then((response) => {
-        console.log('Usuário cadastrado com sucesso:', response.data);
-      })
-      .catch((error) => {
-        console.error('Erro ao cadastrar o usuário:', error);
-      });
+    try {
+      const response = await axios.post("http://localhost:8000/usuarios", user);
+      console.log("Usuário cadastrado com sucesso:", response.data);
+      alert("Usuário criado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao cadastrar o usuário:", error);
+      alert(`Erro ao criar usuário: ${error.response?.data?.message || 'Erro desconhecido'}`);
+    }
   };
 
   return (
@@ -58,13 +53,31 @@ function Cad_usuarios() {
           <div className="cad-dados-usuario">
             <form onSubmit={handleSubmit}>
               <div className="form-flex-row">
-                <div>
+              <div>
                   <Subtitle text="Status" />
-                  <CheckboxStatus name="status" checked={user.status} onChange={handleChange} />
+                  <select
+                    name="status"
+                    value={user.status}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>Selecione o Status</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                  </select>
                 </div>
                 <div>
-                  <Subtitle text="Tipo de Usuário" />
-                  <CheckboxUser name="tipo_usuario" checked={user.tipo_usuario} onChange={handleChange} />
+                  <Subtitle text="Tipo de usuário" />
+                  <select
+                    name="tipo_usuario"
+                    value={user.tipo_usuario}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>Selecione o usuário</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Operador">Operador</option>
+                  </select>
                 </div>
               </div>
               <div className="form-flex-row">
@@ -98,4 +111,3 @@ function Cad_usuarios() {
     </>
   );
 }
-export default Cad_usuarios;

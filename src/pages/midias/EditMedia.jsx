@@ -1,119 +1,98 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import ButtonUpload from "../../components/buttonupload/ButtonUpload";
-import Label from "../../components/Texts/label/Label";
-import ButtonSalve from "../../components/buttonsalve/ButtonSalve";
-import SubTitle from "../../components/Texts/Subtitle/Subtitle";
-import CheckboxMidia from "../../components/CheckBox/CheckBoxMidia";
-import ResponsiveDatePickers from "../../components/Calendar/Calendar";
-import CustomInput from "../../components/input/input";
-import Navbar from "../../components/navbar/Navbar";
-import CheckboxStatus from "../../components/CheckBox/CheckBoxStatus";
-import Select from "../../components/select/Select";
-import CustomButton from "../../components/button/button";
-import { NavLink } from 'react-router-dom';
-import "../Styles/stylesCadastros.css";
 
-const empresaOptions = [
-  { value: 0, label: 'Softex' },
-  { value: 1, label: 'Facilit' },
-];
-
-function EditMedia() {
-  const { id } = useParams();
+const EditarMidia = () => {
+  const { id } = useParams(); // Obtém o ID da mídia da URL
+  const [midia, setMidia] = useState({});
   const navigate = useNavigate();
 
-  const [media, setMedia] = useState({
-    ativo: false,
-    titulo: '',
-    descricao: '',
-    tm: '',
-    empresa: '',
-    start: '',
-    finale: '',
-    preview: ''
-  });
+  // useEffect(() => {
+  //   axios.get(`http://localhost:8000/midias/${id}`)
+  //     .then((response) => {
+  //       setMidia(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Erro ao buscar a mídia:', error);
+  //     });
+  // }, [id]);
 
-  useEffect(() => {
-
-    const fetchedMedia = {
-      ativo: true,
-      titulo: 'Campanha Natal',
-      descricao: 'Descrição da Campanha Natal',
-      tm: 'imagem',
-      empresa: 'Softex',
-      start: '01/10/2023',
-      finale: '31/12/2023',
-      preview: ''
-    };
-    setMedia(fetchedMedia);
-  }, [id]);
-
-  const handleChange = (e) => {
+const handleChange = (e) => {
     const { name, value } = e.target;
-    setMedia((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setMidia({...midia, [name]: value});
   };
 
-  const handleSave = () => {
-    // Salvar as alterações
-    console.log(media);
-    navigate('/midias');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Atualiza os dados da mídia
+    axios.put(`http://localhost:8000/midias/${id}`, midia)
+      .then(() => {
+        navigate('/midias'); // Redireciona para a lista de mídias após a edição
+      })
+      .catch((error) => {
+        console.error('Erro ao atualizar a mídia:', error);
+      });
   };
 
   return (
-    <>
-      <div className="NavBar">
-        <Navbar />
-      </div>
-
-      <div className="cad-midia">
-        <div className="cad-midia-container">
-          <div className="cad-dados-midia">
-            <div>
-              <form>
-                <div className="form-flex-row">
-                  <div>
-                    <SubTitle text="Status" />
-                    <CheckboxStatus checked={media.ativo} onChange={(e) => setMedia({ ...media, ativo: e.target.checked })} />
-                  </div>
-                  <div>
-                    <SubTitle type="text" text="Tipo de Mídia" />
-                    <CheckboxMidia value={media.tm} onChange={(e) => handleChange(e)} />
-                  </div>
-                </div>
-                <div className="form-flex-row">
-                  <CustomInput type="text" label="Titulo" value={media.titulo} name="titulo" onChange={handleChange} inputProps={{ sx: { width: '710px' } }} />
-                </div>
-                <div className="form-flex-row">
-                  <CustomInput type="text" label="Descrição" value={media.descricao} name="descricao" onChange={handleChange} inputProps={{ sx: { width: '710px', height: '60px' } }} />
-                </div>
-                <div className="form-flex-row">
-                  <div className="input-salas">
-                    <Select label="Empresa" options={empresaOptions} value={media.empresa} name="empresa" onChange={handleChange} />
-                  </div>
-                  <div>
-                    <ButtonUpload label="Anexar" />
-                    <Label text1="*Máx. imagem 150MB" text2="*Máx. vídeo 4k 30fps de até 30 segundos." />
-                  </div>
-                </div>
-                <div className="form-flex-row">
-                  <CustomButton className="buttonAdd">
-                    <NavLink to="/midias" className='buttonAdd'>
-                      Cancelar
-                    </NavLink>
-                  </CustomButton>
-                  <ButtonSalve text="SALVAR" onClick={handleSave} />
-                </div>
-              </form>
-            </div>
-          </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Título:</label>
+          <input
+            type="text"
+            name="titulo"
+            value={midia.titulo}
+            onChange={handleChange}
+          />
         </div>
-      </div>
-    </>
+        <div>
+          <label>Descrição:</label>
+          <input
+            type="text"
+            name="descricao"
+            value={midia.descricao}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Tipo:</label>
+          <input
+            type="text"
+            name="tipo"
+            value={midia.tipo}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Status:</label>
+          <input
+            type="text"
+            name="status"
+            value={midia.status}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Data de Início:</label>
+          <input
+            type="date"
+            name="data_inicio"
+            value={midia.data_inicio}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Data de Fim:</label>
+          <input
+            type="date"
+            name="data_fim"
+            value={midia.data_fim}
+            onChange={handleChange}
+          />
+        </div>
+          <button type="submit">Salvar</button>
+        </form>
   );
-}
+};
 
-export default EditMedia;
+export default EditarMidia;

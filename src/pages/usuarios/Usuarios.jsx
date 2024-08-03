@@ -10,8 +10,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import "../Styles/stylesPages.css";
 import Navbar from '../../components/navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
-import Alert from '../../components/alerts/Alert';
-
+import Alert from '../../components/alerts/AlertDelete';
 
 function formatarCPF(cpf) {
   const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
@@ -35,15 +34,12 @@ const Usuarios = () => {
       });
   }, []);
 
-  /*const handleEdit = (id) => {
-    navigate(`/usuarios/editar/${id}`);
-  };*/
-
   const handleDelete = (id) => {
-    axios.delete(`/api/users/${id}`)
+    axios.delete(`http://localhost:8000/usuarios/${id}`)
       .then(() => {
         setUsers(users.filter(user => user.id !== id));
         setOpen(false);
+        navigate('/usuarios'); // Redireciona para a tela de usuários após a exclusão
       })
       .catch((error) => {
         console.error('Error deleting user:', error);
@@ -60,8 +56,7 @@ const Usuarios = () => {
   };
 
   const handleCancel = () => {
-    navigate('/usuarios');
-    handleClose();
+    setOpen(false);
   };
 
   const customColumns = [
@@ -79,7 +74,7 @@ const Usuarios = () => {
       field: 'cpf', headerName: 'CPF', type: 'number', flex: 1,
       valueFormatter: (params) => formatarCPF(params.value.toString())
     },
-    { field: 'nome', headerName: 'Nome Completo', flex: 1.5 },
+    { field: 'nome_completo', headerName: 'Nome Completo', flex: 1.5 },
     { field: 'email', headerName: 'E-mail', flex: 1.2 },
     { field: 'tipo_usuario', headerName: 'Tipo', flex: 0.5 },
     { field: 'login', headerName: 'Usuário', flex: 0.8 },
@@ -89,13 +84,14 @@ const Usuarios = () => {
       flex: 0.5,
       sortable: false,
       renderCell: (params) => (
-        <IconButton
-          aria-label="edit"
-          size="small"
-          onClick={() => handleEdit(params.row.id)}
-        >
-          <EditOutlined />
-        </IconButton>
+        <NavLink to={`/editar-usuario/${params.row.id}`}>
+          <IconButton
+            aria-label="edit"
+            size="small"
+          >
+            <EditOutlined />
+          </IconButton>
+        </NavLink>
       ),
     },
     {
@@ -125,7 +121,7 @@ const Usuarios = () => {
         <div className="usuarios-container">
           <div className="dados-usuario">
             <CustomButton className="buttonAdd">
-              <NavLink to="/usuarios/cadastro" className='buttonAdd'>
+              <NavLink to="/cadastrar-usuario" className='buttonAdd'>
                 ADICIONAR
               </NavLink>
             </CustomButton>
@@ -134,8 +130,8 @@ const Usuarios = () => {
               handleClose={handleClose}
               title="Excluir Usuário"
               content="Tem certeza que deseja excluir o usuário?"
-              agreeText={() => handleDelete(selectedUserId)}
-              disagreeText={handleCancel}
+              onAgree={() => handleDelete(selectedUserId)} // Função ao clicar em "Confirmar"
+              onDisagree={handleCancel} // Função ao clicar em "Cancelar"
             />
             <div className="tabela-usuario">
               <DataTable
@@ -151,4 +147,3 @@ const Usuarios = () => {
 };
 
 export default Usuarios;
-
